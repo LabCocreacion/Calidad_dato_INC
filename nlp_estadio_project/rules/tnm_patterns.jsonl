@@ -1,0 +1,24 @@
+{"label": "T_STAGE", "pattern": [{"TEXT": {"REGEX": "^T[0-4][a-b]?$"}}]}
+{"label": "N_STAGE", "pattern": [{"TEXT": {"REGEX": "^N[0-3]$"}}]}
+{"label": "M_STAGE", "pattern": [{"TEXT": {"REGEX": "^M[01xX]$"}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": {"IN": ["ca", "cáncer", "carcinoma", "tumor"]}}, {"LOWER": "de", "OP": "?"}, {"LOWER": {"IN": ["mama", "seno"]}, "OP": "?"}, {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?[.,;]?$"}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": "estadio"}, {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": {"IN": ["estadio", "est.", "clasificación", "clasificado", "clínico", "mínimo"]}}, {"LOWER": {"IN": ["como", ":", "es", "es:", "corresponde", "correspondiente", "a"]}, "OP": "?"}, {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": "estadio"}, {"LOWER": {"IN": ["clínico", "mínimo", "patológico"]}, "OP": "?"}, {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}]}
+{"label": "ESTADIO", "pattern": [{"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}, {"LOWER": "según"}, {"LOWER": {"IN": ["clasificación", "tnm"]}}]}
+{"label": "ESTADIO", "pattern": [{"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}, {"LOWER": "por"}, {"TEXT": {"REGEX": "^T[0-4][a-b]?$"}}]}
+{"label": "ESTADIO", "pattern": [{"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}]}
+{"label": "T_STAGE", "pattern": [{"TEXT": {"REGEX": "^(cT|pT|yT|rT|aT|uT|mT|T)(is|[0-4]|1a|1b|1c|2a|2b|3|4|x)?$"}}]}
+{"label": "N_STAGE", "pattern": [{"TEXT": {"REGEX": "^(cN|pN|yN|N)([0-3]|x)?$"}}]}
+{"label": "M_STAGE", "pattern": [{"TEXT": {"REGEX": "^(rM|M)[01xX]$"}}]}
+{"label": "GRADE", "pattern": [{"TEXT": {"REGEX": "^G[1-4]$"}}]}
+{"label": "RESECTION", "pattern": [{"TEXT": {"REGEX": "^R[0-2]$"}}]}
+{"label": "LYMPHATIC", "pattern": [{"TEXT": {"REGEX": "^L[01]$"}}]}
+{"label": "VASCULAR", "pattern": [{"TEXT": {"REGEX": "^V[01]$"}}]}
+{"label": "PERINEURAL", "pattern": [{"TEXT": {"REGEX": "^Pn[01]$"}}]}
+{"label": "S_STAGE", "pattern": [{"TEXT": {"REGEX": "^S[01]$"}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": {"IN": ["cáncer", "cancer", "carcinoma", "adenocarcinoma", "neoplasia", "neoplasia maligna", "tumor maligno", "tumor invasivo", "ca"]}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": {"IN": ["ca", "ca mama", "ca de tejidos blandos", "ca avanzado"]}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": {"IN": ["cáncer localmente avanzado", "cáncer diseminado", "cáncer metastásico"]}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": {"IN": ["metástasis", "lesión tumoral", "masa tumoral", "masa palpable", "nodular", "engrosamiento", "crecimiento", "infiltración"]}}]}
+{"label": "ESTADIO", "pattern": [{"LOWER": {"IN": ["estadio clínico", "estadio patológico", "en estadio iv", "en estadio iii", "en estadio avanzado"]}}]}

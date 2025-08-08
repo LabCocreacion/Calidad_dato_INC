@@ -1,0 +1,53 @@
+// Detecta T_STAGE (tumor primario): T0, T1, T2a, T3b, T4
+{"label": "T_STAGE", "pattern": [{"TEXT": {"REGEX": "^T[0-4][a-b]?$"}}]}
+
+// Detecta N_STAGE (ganglios linfáticos): N0, N1, N2, N3
+{"label": "N_STAGE", "pattern": [{"TEXT": {"REGEX": "^N[0-3]$"}}]}
+
+// Detecta M_STAGE (metástasis): M0, M1, Mx (con x o X)
+{"label": "M_STAGE", "pattern": [{"TEXT": {"REGEX": "^M[01xX]$"}}]}
+
+// Detecta estadio implícito cerca de "CA de mama IIIB", "carcinoma seno IIA"
+{"label": "ESTADIO", "pattern": [
+  {"LOWER": {"IN": ["ca", "cáncer", "carcinoma", "tumor"]}},
+  {"LOWER": "de", "OP": "?"},
+  {"LOWER": {"IN": ["mama", "seno"]}, "OP": "?"},
+  {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?[.,;]?$"}}
+]}
+
+// Detecta frases directas tipo: "estadio IIA"
+{"label": "ESTADIO", "pattern": [
+  {"LOWER": "estadio"},
+  {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}
+]}
+
+// Detecta frases como: "clasificado como IIB", "mínimo IIA", "corresponde a IIIA"
+{"label": "ESTADIO", "pattern": [
+  {"LOWER": {"IN": ["estadio", "est.", "clasificación", "clasificado", "clínico", "mínimo"]}},
+  {"LOWER": {"IN": ["como", ":", "es", "es:", "corresponde", "correspondiente", "a"]}, "OP": "?"},
+  {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}
+]}
+
+// Detecta frases tipo: "estadio clínico II", "estadio patológico IV"
+{"label": "ESTADIO", "pattern": [
+  {"LOWER": "estadio"},
+  {"LOWER": {"IN": ["clínico", "mínimo", "patológico"]}, "OP": "?"},
+  {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}
+]}
+
+// Detecta formato: "IIIB según clasificación TNM"
+{"label": "ESTADIO", "pattern": [
+  {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}},
+  {"LOWER": "según"},
+  {"LOWER": {"IN": ["clasificación", "tnm"]}}
+]}
+
+// Detecta formato: "IIA por T2"
+{"label": "ESTADIO", "pattern": [
+  {"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}},
+  {"LOWER": "por"},
+  {"TEXT": {"REGEX": "^T[0-4][a-b]?$"}}
+]}
+
+// Regla general (respaldo): detecta estadio suelto si nada más funciona
+{"label": "ESTADIO", "pattern": [{"TEXT": {"REGEX": "^(0|I{1,3}|IV)(A|B)?$"}}]}
